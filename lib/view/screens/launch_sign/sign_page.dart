@@ -1,6 +1,6 @@
 import 'package:dog_dom/core/constants/imports.dart';
-import 'package:dog_dom/view/widgets/text/my_text_widget.dart';
 import 'package:flutter/material.dart';
+
 
 class SignPage extends StatelessWidget {
   const SignPage({Key? key}) : super(key: key);
@@ -8,6 +8,7 @@ class SignPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         width: SizeConfig.screenWidth,
         child: Container(
@@ -22,6 +23,13 @@ class SignPage extends StatelessWidget {
                   color: MyColors.white, width: getUniqueW(180.0)),
 
               // TEXTFIELD SECTION
+              Container(
+                //height: getUniqueH(60.0),
+                margin: EdgeInsets.zero,
+                padding: EdgeInsets.fromLTRB(getUniqueW(28.0), getUniqueH(40.0), getUniqueW(28.0), getUniqueH(16.0)),
+                child: MyAuthTextField(controller: Provider.of<TextFieldProvider>(context).textController, 
+                hintText: '', textInputType: TextInputType.phone, labelText: ""),
+              ),
 
               // BUTTON SECTION
               ElevatedButton(
@@ -41,15 +49,31 @@ class SignPage extends StatelessWidget {
                 ),
               ),
 
-              // TEXT SECTION
-              // Container(
-              //   padding: EdgeInsets.only(
-              //     left: getUniqueW(35.0),
-              //     top: getUniqueH(10.0),
-              //   ),
-              //   alignment: Alignment.centerLeft,
-              //   child: MyText(data: "Password to Login", size: 13, color: MyColors.white),
-              // ),
+              //TEXT SECTION
+              Container(
+                child: MyTextRegular(
+                    data: "Password to Login", size: 13, color: MyColors.white),
+                padding: EdgeInsets.only(
+                  left: getUniqueW(35.0),
+                  top: getUniqueH(10.0),
+                ),
+                alignment: Alignment.centerLeft,
+              ),
+
+              const Spacer(),
+
+              // BOTTOM TEXT SECTION
+              Container(
+                padding: EdgeInsets.only(bottom: getUniqueH(16.0)),
+                width: getUniqueW(260.0),
+                child: MyTextRegular(
+                  data:
+                      'By signing in, you agree to the User Agreement and Privacy Terms.',
+                  size: 13,
+                  color: MyColors.white,
+                  textAlign: TextAlign.center,
+                ),
+              ),
             ],
           ),
         ),

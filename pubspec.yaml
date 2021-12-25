@@ -37,6 +37,7 @@ dependencies:
   svg_icon: ^0.0.1
   flutter_svg: ^0.22.0
   shared_preferences: ^2.0.11
+  provider: ^6.0.1
 
 dev_dependencies:
   flutter_test:
