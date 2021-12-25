@@ -1,6 +1,6 @@
-import 'package:dog_dom/core/constants/colors.dart';
+import 'package:dog_dom/core/constants/imports.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
