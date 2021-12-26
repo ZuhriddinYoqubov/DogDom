@@ -33,7 +33,9 @@ class SignPage extends StatelessWidget {
 
               // BUTTON SECTION
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomePage()));
+                },
                 child: const Text("Get Captcha"),
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(

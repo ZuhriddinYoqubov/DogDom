@@ -1,5 +1,5 @@
 import 'package:dog_dom/providers/text_field_provider.dart';
-import 'package:dog_dom/view/screens/home_page.dart';
+import 'package:dog_dom/view/screens/launch_sign/home/home_page.dart';
 import 'package:dog_dom/view/screens/launch_sign/launch_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

@@ -8,14 +8,16 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: 
-        SvgPicture.asset(
-          'assets/icons/QQ.svg',
-          height: 100,
-          width: 100,
-        ),
-      ),
+      body: Column(
+        children: [
+
+          // SELECT DISCOVER SECTION
+          Row(children: [
+            MyTextMedium(data: 'Select', size: 17),
+            MyTextMedium(data: 'Discover', size: 17)
+          ],)
+        ],
+      )
     );
   }
 }
