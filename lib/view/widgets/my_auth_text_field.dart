@@ -7,7 +7,6 @@ class MyAuthTextField extends StatelessWidget {
   final TextInputType textInputType;
   final String labelText;
   late bool isVisible;
-  late TextFieldProvider _fieldProvider;
   Widget? suffixIcon;
 
   String? Function(String?)? validator;

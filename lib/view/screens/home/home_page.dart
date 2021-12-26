@@ -24,24 +24,32 @@ class HomePage extends StatelessWidget {
           if (select) buldHorizontalScroll(),
 
           // VERTICAL SCROLL CARD
-          Flexible(
-              child: ListView.builder(
-                  itemCount: 3,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      height: 300,
-                      color: Colors.amber,
-                      margin: EdgeInsets.all(10),
-                    );
-                  }))
+          buildVerticalScroll()
         ],
       ),
-      bottomNavigationBar: MyBottomNavBar(),
+      bottomNavigationBar: const MyBottomNavBar(),
     );
   }
 
-  Container buldHorizontalScroll() {
+  Widget buildVerticalScroll() {
+    return Expanded(
+            child: ListView.builder(
+              padding: EdgeInsets.zero,
+                physics: const BouncingScrollPhysics(),
+                itemCount: 3,
+                itemBuilder: (context, index) {
+                  return Container(
+                    height: 300,
+                    width: 500,
+                    color: Colors.amber,
+                    margin: const EdgeInsets.all(10),
+                  );
+                }));
+  }
+
+  Widget buldHorizontalScroll() {
     return Container(
+      margin: EdgeInsets.only(bottom: getUniqueH(10.0)),
       width: SizeConfig.screenWidth,
       height: getUniqueH(190.0),
       child: ListView(

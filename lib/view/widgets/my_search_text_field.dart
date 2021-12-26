@@ -7,7 +7,6 @@ class MySearchTextField extends StatelessWidget {
   final TextInputType? textInputType;
   final String? labelText;
   late bool isVisible;
-  late TextFieldProvider _fieldProvider;
   Widget? suffixIcon;
   Widget? prefixIcon;
   String? Function(String?)? validator;
