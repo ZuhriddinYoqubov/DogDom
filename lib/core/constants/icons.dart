@@ -70,7 +70,7 @@ class MyIcons {
   // home_page_icons 
   static const fosterCare = 'assets/icons/Foster_care.png';  
   static const revelation = 'assets/icons/Revelation.png';  
-  static const nearbly = 'assets/icons/Nearbly.png';  
+  static const nearby = 'assets/icons/Nearby.png';  
   static const surrounding = 'assets/icons/Surrounding.png';  
   static const discuss = 'assets/icons/Discuss.png';  
   static const ranking = 'assets/icons/Ranking.png';  

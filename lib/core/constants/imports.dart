@@ -25,9 +25,12 @@ export 'package:dog_dom/view/widgets/text/my_text_medium.dart';
 export 'package:dog_dom/view/widgets/text/my_text_semibold.dart';
 export 'package:dog_dom/view/widgets/my_search_text_field.dart';
 export 'package:dog_dom/view/widgets/tab_bar_item.dart';
+export 'package:dog_dom/view/widgets/my_bottom_nav_bar.dart';
 
 
 
 // PROVIDERS
 export 'package:dog_dom/providers/text_field_provider.dart';
-export 'package:dog_dom/providers/search_field_prowider.dart';
+export 'package:dog_dom/providers/search_field_provider.dart';
+export 'package:dog_dom/providers/home_page_provider.dart';
+

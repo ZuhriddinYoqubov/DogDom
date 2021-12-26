@@ -1,4 +1,4 @@
-import 'package:dog_dom/providers/search_field_prowider.dart';
+import 'package:dog_dom/providers/bottom_nav_bar_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:dog_dom/core/constants/imports.dart';
 
@@ -7,6 +7,8 @@ void main() {
     providers: [
       ChangeNotifierProvider(create: (context) => TextFieldProvider()),
       ChangeNotifierProvider(create: (context) => SearchFieldProvider()),
+      ChangeNotifierProvider(create: (context) => HomePageProvider()),
+      ChangeNotifierProvider(create: (context) => BottomNavBarProvider()),
 
     ],
     child: const MyApp(),

@@ -64,7 +64,7 @@ class MySearchTextField extends StatelessWidget {
           ),
         ),
       ),
-      style: TextStyle(color: whiteConst, fontSize: getUniqueW(17.0), fontWeight: FontWeight.w500),
+      style: TextStyle(color: blackConst, fontSize: getUniqueW(17.0), fontWeight: FontWeight.w500),
     );
   }
 }
