@@ -1,13 +1,13 @@
-import 'package:dog_dom/providers/text_field_provider.dart';
-import 'package:dog_dom/view/screens/launch_sign/home/home_page.dart';
-import 'package:dog_dom/view/screens/launch_sign/launch_page.dart';
+import 'package:dog_dom/providers/search_field_prowider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:dog_dom/core/constants/imports.dart';
 
 void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => TextFieldProvider()),
+      ChangeNotifierProvider(create: (context) => SearchFieldProvider()),
+
     ],
     child: const MyApp(),
   ));

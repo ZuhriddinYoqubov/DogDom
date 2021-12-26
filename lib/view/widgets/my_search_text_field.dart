@@ -1,24 +1,25 @@
 import 'package:dog_dom/core/constants/imports.dart';
 import 'package:flutter/material.dart';
 
-class MyAuthTextField extends StatelessWidget {
+class MySearchTextField extends StatelessWidget {
   final String? hintText;
   final TextEditingController controller;
-  final TextInputType textInputType;
-  final String labelText;
+  final TextInputType? textInputType;
+  final String? labelText;
   late bool isVisible;
   late TextFieldProvider _fieldProvider;
   Widget? suffixIcon;
-
+  Widget? prefixIcon;
   String? Function(String?)? validator;
   
 
-  MyAuthTextField({
+  MySearchTextField({
     required this.controller,
     required this.hintText,
-    required this.textInputType,
-    required this.labelText,
+    this.labelText,
+    this.textInputType,
     this.suffixIcon,
+    this.prefixIcon,
     this.validator,
     Key? key,
   }) : super(key: key);
@@ -29,6 +30,7 @@ class MyAuthTextField extends StatelessWidget {
     //isVisible = Provider.of<TextFieldProvider>(context).isVisible;
     SizeConfig().init(context);
     return TextFormField(
+      textAlignVertical: TextAlignVertical.center,
       controller: controller,
       validator: validator,
       keyboardType: textInputType,
@@ -40,13 +42,16 @@ class MyAuthTextField extends StatelessWidget {
       },
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
+        prefixIcon: prefixIcon,
         hintText: hintText,
+        hintStyle: TextStyle(color: blackConst.withOpacity(0.25) ),
         //labelText: labelText,
         //alignLabelWithHint: true,
+
         filled: true,
-      
-        fillColor: whiteConst.withOpacity(0.25),
-        contentPadding: EdgeInsets.symmetric(vertical: getUniqueH(18.0), horizontal: getUniqueW(28.0)),
+        fillColor: greyConst,
+        
+        contentPadding: EdgeInsets.symmetric(vertical: getUniqueH(6.0), horizontal: getUniqueW(12.0)),
         border: UnderlineInputBorder(
           
           borderSide: const BorderSide(

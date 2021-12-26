@@ -16,6 +16,7 @@ export 'package:dog_dom/core/constants/images.dart';
 // SCREENS
 export 'package:dog_dom/view/screens/home/home_page.dart';
 export 'package:dog_dom/view/screens/launch_sign/sign_page.dart';
+export 'package:dog_dom/view/screens/launch_sign/launch_page.dart';
 
 // WIDGETS
 export 'package:dog_dom/view/widgets/my_auth_text_field.dart';

@@ -12,7 +12,7 @@ class SignPage extends StatelessWidget {
       body: Container(
         width: SizeConfig.screenWidth,
         child: Container(
-          color: MyColors.black.withOpacity(0.7),
+          color: blackConst.withOpacity(0.7),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -20,7 +20,7 @@ class SignPage extends StatelessWidget {
 
               // LOGO SECTION
               SvgPicture.asset(MyIcons.textLogo,
-                  color: MyColors.white, width: getUniqueW(180.0)),
+                  color: whiteConst, width: getUniqueW(180.0)),
 
               // TEXTFIELD SECTION
               Container(
@@ -43,7 +43,7 @@ class SignPage extends StatelessWidget {
                       getUniqueW(30.0),
                     ),
                   ),
-                  primary: MyColors.red,
+                  primary: redConst,
                   fixedSize: Size(
                     getUniqueW(319.0),
                     getUniqueH(60.0),
@@ -54,7 +54,7 @@ class SignPage extends StatelessWidget {
               //TEXT SECTION
               Container(
                 child: MyTextRegular(
-                    data: "Password to Login", size: 13, color: MyColors.white),
+                    data: "Password to Login", size: 13, color: whiteConst),
                 padding: EdgeInsets.only(
                   left: getUniqueW(35.0),
                   top: getUniqueH(10.0),
@@ -72,7 +72,7 @@ class SignPage extends StatelessWidget {
                   data:
                       'By signing in, you agree to the User Agreement and Privacy Terms.',
                   size: 13,
-                  color: MyColors.white,
+                  color: whiteConst,
                   textAlign: TextAlign.center,
                 ),
               ),
