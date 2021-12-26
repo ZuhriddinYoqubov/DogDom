@@ -57,7 +57,6 @@ class MyIcons {
   static const setSvg = 'assets/icons/Set.svg';
   static const smile = 'assets/icons/Smile.svg';
   static const smile2 = 'assets/icons/Smile_2.svg';
-
   static const switchFill = 'assets/icons/Switch_fill.svg';
   static const twitter = 'assets/icons/Twitter.svg';
   static const userFill = 'assets/icons/User_fill.svg';
@@ -66,6 +65,14 @@ class MyIcons {
   static const voiceTwo = 'assets/icons/Voice_2_fill.svg';
   static const voice = 'assets/icons/Voice.svg';
   static const weChat = 'assets/icons/weChat.svg';  
-  static const textLogo = 'assets/icons/text_logo.svg';  
+  static const textLogo = 'assets/icons/text_logo.svg'; 
 
+  // home_page_icons 
+  static const fosterCare = 'assets/icons/Foster_care.png';  
+  static const revelation = 'assets/icons/Revelation.png';  
+  static const nearbly = 'assets/icons/Nearbly.png';  
+  static const surrounding = 'assets/icons/Surrounding.png';  
+  static const discuss = 'assets/icons/Discuss.png';  
+  static const ranking = 'assets/icons/Ranking.png';  
+  
 }

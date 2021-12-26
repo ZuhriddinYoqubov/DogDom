@@ -23,9 +23,11 @@ export 'package:dog_dom/view/widgets/my_auth_text_field.dart';
 export 'package:dog_dom/view/widgets/text/my_text_regular.dart';
 export 'package:dog_dom/view/widgets/text/my_text_medium.dart';
 export 'package:dog_dom/view/widgets/text/my_text_semibold.dart';
+export 'package:dog_dom/view/widgets/my_search_text_field.dart';
+export 'package:dog_dom/view/widgets/tab_bar_item.dart';
 
 
 
 // PROVIDERS
 export 'package:dog_dom/providers/text_field_provider.dart';
-
+export 'package:dog_dom/providers/search_field_prowider.dart';

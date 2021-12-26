@@ -1,6 +1,4 @@
 import 'package:dog_dom/core/constants/imports.dart';
-import 'package:dog_dom/providers/search_field_prowider.dart';
-import 'package:dog_dom/view/widgets/my_search_text_field.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -9,36 +7,72 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: whiteConst,
-        body: Column(
-          children: [
-            // SELECT DISCOVER SECTION
-            buildAppBar(),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: getUniqueW(18.0)),
-              child: MySearchTextField(
-                controller:
-                    context.watch<SearchFieldProvider>().searchController,
-                hintText: 'Send the sample',
-                suffixIcon: SvgPicture.asset(
-                  MyIcons.voiceTwo,
-                  color: blackConst.withOpacity(0.55),
-                  width: getUniqueW(24.0),
-                  fit: BoxFit.none,
-                ),
-                prefixIcon: SvgPicture.asset(
-                  MyIcons.searchSmall,
-                  width: getUniqueW(24.0),
-                  fit: BoxFit.none,
-                  color: blackConst.withOpacity(0.25),
-                ),
-              ),
-            )
-          ],
-        ));
+      backgroundColor: whiteConst,
+      body: Column(
+        children: [
+          // SELECT DISCOVER SECTION
+          buildAppBar(),
+
+          // SEACH FIELD SECTION
+          buildSearchField(context),
+
+          // TOP NAVIGATION BAR
+          buildTabBar(),
+        ],
+      ),
+    );
   }
 
-  SafeArea buildAppBar() {
+  Widget buildTabBar() {
+    return Container(
+          margin: EdgeInsets.only(top: getUniqueH(10)),
+          width: SizeConfig.screenWidth,
+          height: getUniqueH(78.8),
+          color: Colors.grey, // delete
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
+              TapBarItem(
+                image: MyIcons.ranking,
+                text: "Ranking",
+              ),
+              TapBarItem(
+                image: MyIcons.discuss,
+                text: "Discuss",
+              ),
+              TapBarItem(
+                image: MyIcons.surrounding,
+                text: "Surrounding",
+              ),
+            ],
+          ),
+        );
+  }
+
+  Widget buildSearchField(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: getUniqueW(18.0)),
+      child: MySearchTextField(
+        controller: context.watch<SearchFieldProvider>().searchController,
+        hintText: 'Send the sample',
+        suffixIcon: SvgPicture.asset(
+          MyIcons.voiceTwo,
+          color: blackConst.withOpacity(0.55),
+          width: getUniqueW(24.0),
+          fit: BoxFit.none,
+        ),
+        prefixIcon: SvgPicture.asset(
+          MyIcons.searchSmall,
+          width: getUniqueW(24.0),
+          fit: BoxFit.none,
+          color: blackConst.withOpacity(0.25),
+        ),
+      ),
+    );
+  }
+
+  Widget buildAppBar() {
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.fromLTRB(getUniqueW(18.0), getUniqueH(10.0),
