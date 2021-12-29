@@ -14,7 +14,7 @@ class MySearchTextField extends StatelessWidget {
 
   MySearchTextField({
     required this.controller,
-    required this.hintText,
+    this.hintText,
     this.labelText,
     this.textInputType,
     this.suffixIcon,
@@ -33,16 +33,25 @@ class MySearchTextField extends StatelessWidget {
       controller: controller,
       validator: validator,
       keyboardType: textInputType,
-      //obscureText: (keyboardType == TextInputType.visiblePassword && isVisible) ? true : false,
       onChanged: (value) {
         // Provider.of<TextFieldProvider>(context, listen: false).value =
         //     value;
         // context.read<TextFieldProvider>().changValue(value);
       },
       decoration: InputDecoration(
-        suffixIcon: suffixIcon,
-        prefixIcon: prefixIcon,
-        hintText: hintText,
+        suffixIcon:  SvgPicture.asset(
+          MyIcons.voiceTwo,
+          color: blackConst.withOpacity(0.55),
+          width: getUniqueW(24.0),
+          fit: BoxFit.none,
+        ),
+        prefixIcon: SvgPicture.asset(
+          MyIcons.searchSmall,
+          width: getUniqueW(24.0),
+          fit: BoxFit.none,
+          color: blackConst.withOpacity(0.25),
+        ),
+        hintText: 'Send the sample',
         hintStyle: TextStyle(color: blackConst.withOpacity(0.25) ),
         //labelText: labelText,
         //alignLabelWithHint: true,
