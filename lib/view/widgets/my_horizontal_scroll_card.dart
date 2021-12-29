@@ -6,15 +6,21 @@ class MyHorizontalScrollCard extends StatelessWidget {
   String? buttonText;
   String? image;
   String title;
-  String subtitle;
+  double? titleSize;
+  String? subtitle;
+  double? subtitleSize;
   Color? textColor;
+  Color? cardColor;
   MyHorizontalScrollCard(
       {required this.title,
-      required this.subtitle,
+      this.titleSize,
+      this.subtitleSize,
+      this.subtitle,
       this.onpressed,
       this.buttonText,
       this.image,
       this.textColor,
+      this.cardColor,
       Key? key})
       : super(key: key);
 
@@ -31,15 +37,15 @@ class MyHorizontalScrollCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          MyTextSemibold(
+          MyTextMedium(
             data: title,
-            size: 24,
+            size: titleSize ?? 24,
             color: textColor,
           ),
           SizedBox(height: getUniqueH(4.0)),
-          MyTextRegular(
-            data: subtitle,
-            size: 13,
+          if(subtitle != null)MyTextRegular(
+            data: subtitle!,
+            size: subtitleSize ??  13,
             color: textColor,
           ),
           if (onpressed != null) SizedBox(height: getUniqueH(16.0)),
@@ -63,7 +69,7 @@ class MyHorizontalScrollCard extends StatelessWidget {
         image: image != null
             ? DecorationImage(image: AssetImage(image!), fit: BoxFit.cover)
             : null,
-        color: greyConst,
+        color: cardColor ?? greyConst,
         borderRadius: BorderRadius.circular(
           getUniqueW(18.0),
         ),

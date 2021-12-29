@@ -21,7 +21,7 @@ class HomeSelectPage extends StatelessWidget {
           buildTabBar(select),
 
           // HORIZONTAL SCROLL CARD
-          if (select) buldHorizontalScroll(),
+          if (select) buildHorizontalScroll(),
           SizedBox(height: getUniqueH(10.0)),
 
           // VERTICAL SCROLL CARD
@@ -47,7 +47,7 @@ class HomeSelectPage extends StatelessWidget {
             }));
   }
 
-  Widget buldHorizontalScroll() {
+  Widget buildHorizontalScroll() {
     return SizedBox(
       width: SizeConfig.screenWidth,
       height: getUniqueH(190.0),
@@ -68,6 +68,7 @@ class HomeSelectPage extends StatelessWidget {
               : MyHorizontalScrollCard(
                   image: MyImages.homeCard2,
                   title: 'Take me home',
+                  titleSize: 17,
                   subtitle: 'Please take me home',
                   textColor: whiteConst,
                 );
