@@ -87,29 +87,29 @@ class HomeSelectPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: select
             ? const [
-                TapBarItem(
+                MyTapBarItem(
                   image: MyIcons.ranking,
                   text: "Ranking",
                 ),
-                TapBarItem(
+                MyTapBarItem(
                   image: MyIcons.discuss,
                   text: "Discuss",
                 ),
-                TapBarItem(
+                MyTapBarItem(
                   image: MyIcons.surrounding,
                   text: "Surrounding",
                 ),
               ]
             : const [
-                TapBarItem(
+                MyTapBarItem(
                   image: MyIcons.nearby,
                   text: "Nearby",
                 ),
-                TapBarItem(
+                MyTapBarItem(
                   image: MyIcons.revelation,
                   text: "Revelation",
                 ),
-                TapBarItem(
+                MyTapBarItem(
                   image: MyIcons.fosterCare,
                   text: "Foster care",
                 ),

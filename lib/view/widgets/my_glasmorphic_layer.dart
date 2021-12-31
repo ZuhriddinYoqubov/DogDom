@@ -10,7 +10,7 @@ class MyGlasmorphicLayer extends StatelessWidget {
     return GlassmorphicFlexContainer(
                     alignment: Alignment.bottomCenter,
                     borderRadius: 0,
-                    blur: 20,
+                    blur: 10,
                     border: 0,
                     linearGradient: LinearGradient(
                         begin: Alignment.topLeft,

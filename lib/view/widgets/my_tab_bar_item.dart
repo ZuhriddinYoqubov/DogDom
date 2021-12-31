@@ -1,10 +1,10 @@
 import 'package:dog_dom/core/constants/imports.dart';
 import 'package:flutter/material.dart';
 
-class TapBarItem extends StatelessWidget {
+class MyTapBarItem extends StatelessWidget {
   final String image;
   final String text;
-  const TapBarItem({
+  const MyTapBarItem({
     required this.image,
     required this.text,
     Key? key,

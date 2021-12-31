@@ -9,6 +9,7 @@ void main() {
       ChangeNotifierProvider(create: (context) => SearchFieldProvider()),
       ChangeNotifierProvider(create: (context) => HomePageProvider()),
       ChangeNotifierProvider(create: (context) => BottomNavBarProvider()),
+      ChangeNotifierProvider(create: (context) => CircleTabProvider()),
 
     ],
     child: const MyApp(),
