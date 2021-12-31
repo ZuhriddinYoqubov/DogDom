@@ -6,14 +6,17 @@ class MyTextRegular extends StatelessWidget {
   final double size;
   Color? color;
   TextAlign? textAlign;
+  int? maxLines;
 
-  MyTextRegular({required this.data, required this.size, this.textAlign, this.color ,Key? key }) : super(key: key);
+  MyTextRegular({required this.data, required this.size, this.maxLines, this.textAlign, this.color ,Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return  Text(
                   data,
                   textAlign: textAlign,
+                  maxLines: maxLines,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       fontSize: getUniqueW(size), color: color),
                 );

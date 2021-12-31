@@ -5,6 +5,8 @@ export 'package:flutter_svg/svg.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 export 'package:flutter_svg/svg.dart';
 export 'package:provider/provider.dart';
+export 'package:glassmorphism/glassmorphism.dart';
+
 
 // CONSTANTS
 export 'package:dog_dom/core/constants/icons.dart';
@@ -16,6 +18,10 @@ export 'package:dog_dom/core/constants/images.dart';
 export 'package:dog_dom/view/screens/home/home_page.dart';
 export 'package:dog_dom/view/screens/launch_sign/sign_page.dart';
 export 'package:dog_dom/view/screens/launch_sign/launch_page.dart';
+export 'package:dog_dom/view/screens/circle/circle_detail_page.dart';
+export 'package:dog_dom/view/screens/circle/circle_detail.dart';
+
+
 
 // WIDGETS
 export 'package:dog_dom/view/widgets/my_auth_text_field.dart';
@@ -27,6 +33,8 @@ export 'package:dog_dom/view/widgets/tab_bar_item.dart';
 export 'package:dog_dom/view/widgets/my_bottom_nav_bar.dart';
 export 'package:dog_dom/view/widgets/my_horizontal_scroll_card.dart';
 export 'package:dog_dom/view/widgets/my_circles_list.dart';
+export 'package:dog_dom/view/widgets/my_glasmorphic_layer.dart';
+
 
 
 // PROVIDERS

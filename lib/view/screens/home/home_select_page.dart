@@ -133,7 +133,7 @@ class HomeSelectPage extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(getUniqueW(18.0), getUniqueH(10.0),
             getUniqueW(18.0), getUniqueH(10.0)),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(width: getUniqueW(24.0)),
@@ -149,10 +149,10 @@ class HomeSelectPage extends StatelessWidget {
                     color: select ? blackConst : blackConst.withOpacity(0.4),
                   ),
                   SizedBox(height: getUniqueH(5.0)),
-                  if (select)
+                  
                     SvgPicture.asset(
                       MyIcons.smile2,
-                      color: redConst,
+                      color:select ? redConst: Colors.transparent,
                     )
                 ],
               ),
@@ -171,10 +171,9 @@ class HomeSelectPage extends StatelessWidget {
                     color: !select ? blackConst : blackConst.withOpacity(0.4),
                   ),
                   SizedBox(height: getUniqueH(5.0)),
-                  if (!select)
                     SvgPicture.asset(
                       MyIcons.smile2,
-                      color: redConst,
+                      color: !select ? redConst: Colors.transparent,
                     )
                 ],
               ),

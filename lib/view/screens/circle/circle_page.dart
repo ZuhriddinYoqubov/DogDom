@@ -15,16 +15,81 @@ class CirclePage extends StatelessWidget {
           buildHorizontalScroll(),
           // POPULAR CIRCLE SECTION
           buildSectionTitle('Popular circle'),
-          MyCirclesListView(),
+          const MyCirclesListView(),
+          SizedBox(height: getUniqueH(10.0)),
           // THE CIRCLE JOIN SECTION
           buildSectionTitle('The Circle to Join'),
+          Flexible(
+              child: ListView.builder(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: getUniqueW(18.0),
+                    vertical: getUniqueH(10.0),
+                  ),
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> CircleDetail())),
+                      child: SizedBox(
+                          width: SizeConfig.screenWidth,
+                          height: getUniqueH(90.0),
+                          child: 
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: greyConst,
+                                foregroundImage: NetworkImage(
+                                    'https://source.unsplash.com/random/${index + 1}'),
+                                radius: getUniqueW(35.0),
+                              ),
+                              SizedBox(width: getUniqueW(16.0)),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  MyTextRegular(
+                                      data: 'I love Golden Retriever',
+                                      size: getUniqueW(16.0)),
+                                  MyTextRegular(
+                                    data: '548 Members',
+                                    size: getUniqueW(16.0),
+                                    color: blackConst.withOpacity(0.4),
+                                  ),
+                                ],
+                              ),
+                              const Spacer(),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary: redConst,
+                                  fixedSize: Size(
+                                    getUniqueW(70.0),
+                                    getUniqueH(28.0),
+                                  ),
+                                ),
+                                onPressed: () {},
+                                child: Text(
+                                  'Joined',
+                                  style: TextStyle(
+                                    fontSize: getUniqueW(12.0),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          ),
+                    );
+                  }))
         ],
       ),
     );
   }
 
   Widget buildSectionTitle(String title) {
-    return Padding(
+    return Container(
+      height: getUniqueH(35.0),
+      alignment: Alignment.bottomCenter,
       padding: EdgeInsets.symmetric(horizontal: getUniqueW(18.0)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,7 +111,7 @@ class CirclePage extends StatelessWidget {
 
   Widget buildHorizontalScroll() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: getUniqueH(20)),
+      margin: EdgeInsets.only(top: getUniqueH(20)),
       width: SizeConfig.screenWidth,
       height: getUniqueH(190.0),
       child: ListView.builder(
@@ -57,6 +122,7 @@ class CirclePage extends StatelessWidget {
         itemBuilder: (context, index) {
           return index == 0
               ? MyHorizontalScrollCard(
+                  cardColor: redConst.withOpacity(0.3),
                   onpressed: () {},
                   buttonText: 'Create',
                   title: 'How do you\ncreate your circle?',
