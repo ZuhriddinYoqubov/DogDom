@@ -20,7 +20,7 @@ class MyCirclesListView extends StatelessWidget {
           itemBuilder: (context, index) {
             return InkWell(
               onTap: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => CircleDetail())),
+                  MaterialPageRoute(builder: (context) => CircleDetailPage())),
               child: Container(
                 margin: EdgeInsets.only(right: getUniqueW(18.0)),
                 padding: EdgeInsets.zero,

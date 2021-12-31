@@ -3,245 +3,271 @@ import 'package:flutter/material.dart';
 
 class CircleDetailPage extends StatelessWidget {
   const CircleDetailPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: DefaultTabController(
-        length: 3,
-        child: NestedScrollView(
-          physics: const BouncingScrollPhysics(),
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return <Widget>[
-              SliverAppBar(
-                leading: IconButton(
+      backgroundColor: whiteConst,
+      body: Stack(alignment: Alignment.bottomCenter, children: [
+        SizedBox(
+          height: SizeConfig.screenHeight,
+          child: Column(
+            children: [
+              //APPBAR SECTION
+              buildAppBar(context),
+
+              //  GROUP DESCRIPTION SECTION
+              buildTabDescription(),
+
+              // TAB BAR SECTION
+              buildTabBar(context),
+              const Divider(thickness: 0.3),
+
+              // TAB BAR VIEW SECTION
+            ],
+          ),
+        ),
+        buildBottomCard(context)
+      ]),
+    );
+  }
+
+  Widget buildBottomCard(BuildContext context,) {
+    return Positioned(
+      child: Container(
+          padding: EdgeInsets.symmetric(
+              horizontal: getUniqueW(30.0), vertical: getUniqueH(15.0)),
+          decoration: BoxDecoration(
+            color: whiteConst,
+            boxShadow: [
+              BoxShadow(
+                  blurRadius: 5,
+                  spreadRadius: 5,
+                  color: blackConst.withOpacity(0.05),
+                  offset: const Offset(0, 4))
+            ],
+            borderRadius: BorderRadius.circular(
+              getUniqueW(104.0),
+            ),
+          ),
+          child: Row(
+            children: [
+              bouldBottomCardItem(context, MyIcons.questions, 'Questions'),
+              SizedBox(width: getUniqueW(45.5)),
+              bouldBottomCardItem(context, MyIcons.article, 'Article'),
+              SizedBox(width: getUniqueW(45.5)),
+              bouldBottomCardItem(context, MyIcons.dynamik, 'Dynamic'),
+            ],
+          )),
+      bottom: getUniqueH(16.0),
+    );
+  }
+
+  Widget bouldBottomCardItem(BuildContext context, String image, String text) {
+    return InkWell(
+      onTap: ()  {
+        Navigator.pop(context);},
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SvgPicture.asset(
+            image,
+            width: getUniqueW(24.0),
+          ),
+          SizedBox(height: getUniqueH(5.0)),
+          MyTextRegular(data: text, size: 12)
+        ],
+      ),
+    );
+  }
+
+  Widget buildTabBar(BuildContext context) {
+    return Container(
+      height: getUniqueH(38.0),
+      padding: EdgeInsets.only(left: getUniqueW(18.0), top: getUniqueH(10)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          buildTabItem(context, 0, 'Dynamic'),
+          SizedBox(width: getUniqueW(28.0)),
+          buildTabItem(context, 1, 'Discuss'),
+          SizedBox(width: getUniqueW(28.0)),
+          buildTabItem(context, 2, 'Select'),
+        ],
+      ),
+    );
+  }
+
+  Widget buildTabDescription() {
+    return Container(
+      height: getUniqueH(46),
+      width: SizeConfig.screenWidth,
+      color: whiteConst,
+      padding: EdgeInsets.symmetric(
+          horizontal: getUniqueW(18.0), vertical: getUniqueH(13.0)),
+      child: MyTextRegular(
+        data: "Notice Group buying dog food.",
+        size: 15,
+        color: blackConst.withOpacity(0.7),
+      ),
+    );
+  }
+
+  Widget buildTabItem(BuildContext context, int index, String itemName) {
+    return InkWell(
+      onTap: () => context.read<CircleTabProvider>().changeTabIndex(index),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          MyTextMedium(
+            data: itemName,
+            size: 16.0,
+            color: context.watch<CircleTabProvider>().currentIndex == index
+                ? redConst
+                : blackConst,
+          ),
+          SizedBox(height: getUniqueH(4.0)),
+          Container(
+            height: getUniqueH(3.0),
+            width: getUniqueW(18.0),
+            decoration: BoxDecoration(
+              color: context.watch<CircleTabProvider>().currentIndex == index
+                  ? redConst
+                  : Colors.transparent,
+              borderRadius: BorderRadius.circular(2.0),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget buildAppBar(BuildContext context) {
+    return Container(
+      width: SizeConfig.screenWidth,
+      height: getUniqueH(230.0),
+      decoration: const BoxDecoration(
+        color: greyConst,
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: NetworkImage(
+            'https://source.unsplash.com/random',
+          ),
+        ),
+      ),
+      child: MyGlasmorphicLayer(
+        child: buildIntoAppBar(context),
+      ),
+    );
+  }
+
+  Widget buildIntoAppBar(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        // TOOLBAR SECTION
+        SafeArea(
+          child: Container(
+            height: getUniqueH(44.0),
+            padding: EdgeInsets.symmetric(
+              horizontal: getUniqueW(10.0),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
                   onPressed: () => Navigator.pop(context),
                   icon: SvgPicture.asset(
                     MyIcons.left,
                     color: whiteConst,
+                    width: getUniqueW(24.0),
                   ),
                 ),
-                // floating: appbar qisqarganda toolbar yopilmasligiga javob beradi
-                floating: false,
-                pinned: true,
-                //stretch:  true,
-                expandedHeight: 186,//216
-                // TOOLBAR HEIGHT APPBAR TEPASIDAGI TOOL LAR TURADIGAN MAYDON BALANDLIGI
-                //toolbarHeight: 100,
-                // COLLAPSEDHEIGHT: APPBARNING O'ZGARMAS BALANDLIGI(APPBAR QISQARMAYDIGNA YOPILMAYDIGAN BO'LADI)
-                collapsedHeight: 186,
-                centerTitle: true,
-                elevation: 0,
-                automaticallyImplyLeading: true,
-                // bottom: AppBar(
-                //   leadingWidth: 0,
-                //   backgroundColor: whiteConst,
-                //   titleSpacing: 0,
-                //   elevation: 0,
-                //   title: Container(
-                //     color: pincAksent,
-                //     width: SizeConfig.screenWidth,
-                //     alignment: Alignment.centerLeft,
-                //     padding: EdgeInsets.fromLTRB(
-                //       getUniqueW(18.0),
-                //       getUniqueH(16.0),
-                //       getUniqueW(18.0),
-                //       getUniqueH(16.0),
-                //     ),
-                //     child: MyTextRegular(
-                //       data: 'Notice Group buying dog food.',
-                //       color: blackConst,
-                //       size: 15,
-                //     ),
-                //   ),
-                // ),
-                actions: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: SvgPicture.asset(
-                      MyIcons.searchBig,
-                      width: getUniqueW(24.0),
-                      color: whiteConst,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: SvgPicture.asset(
-                      MyIcons.moreV,
-                      width: getUniqueW(24.0),
-                      color: whiteConst,
-                    ),
-                  ),
-                ],
-                  primary:  true,
-                flexibleSpace: FlexibleSpaceBar(
-                  title: Container(
-                    padding: EdgeInsets.symmetric(horizontal: getUniqueW(18.0)),
-                    height: 130,
-                    width: SizeConfig.screenWidth,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const CircleAvatar(
-                          foregroundImage: NetworkImage(
-                              'https://source.unsplash.com/random/2'),
-                          radius: 37.0,
-                          backgroundColor: greyConst,
-                        ),
-                        SizedBox(
-                          width: getUniqueW(10.0),
-                        ),
-                        SizedBox(
-                          width: getUniqueW(256.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              MyTextSemibold(data: "Dog's Life", size: 24),
-                              SizedBox(height: getUniqueH(6.0)),
-                              MyTextRegular(
-                                  data:
-                                      "Dog knowledge sharing, irregularly organized offline exchanges and group buying.",
-                                  size: 13,
-                                  maxLines: 2),
-                              SizedBox(height: getUniqueH(12.0)),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  MyTextRegular(data: '548 Members', size: 13),
-                                  ElevatedButton(
-                                    onPressed: () {},
-                                    child:
-                                        MyTextRegular(data: 'Joined', size: 13),
-                                    style: ElevatedButton.styleFrom(
-                                        primary: blackConst),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  centerTitle: false,
-                  titlePadding: EdgeInsets.zero,
-                //  titlePadding: EdgeInsets.only(bottom: getUniqueH(20.0)),
-                  background: Container(
-                    width: SizeConfig.screenWidth,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(
-                          'https://source.unsplash.com/random',
-                        ),
-                      ),
-                    ),
-                    child: GlassmorphicFlexContainer(
-                      alignment: Alignment.bottomCenter,
-                      borderRadius: 0,
-                      blur: 20,
-                      border: 0,
-                      linearGradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            const Color(0xFFffffff).withOpacity(0.1),
-                            const Color(0xFFFFFFFF).withOpacity(0.05),
-                          ],
-                          stops: const [
-                            0.1,
-                            1,
-                          ]),
-                      borderGradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          const Color(0xFFffffff).withOpacity(0.5),
-                          const Color((0xFFFFFFFF)).withOpacity(0.5),
-                        ],
-                      ),
-                      child: null,
-                    ),
+                const Spacer(),
+                IconButton(
+                  onPressed: () {},
+                  icon: SvgPicture.asset(
+                    MyIcons.searchBig,
+                    width: getUniqueW(24.0),
+                    color: whiteConst,
                   ),
                 ),
-              ),
-              SliverToBoxAdapter(child: Container(height: getUniqueH(46), color: redConst,)),
-              SliverPersistentHeader(
-                delegate: _SliverAppBarDelegate(
-                  TabBar(
-                    physics: const BouncingScrollPhysics(),
-                    labelColor: redConst,
-                    unselectedLabelColor: blackConst,
-                    indicatorPadding:
-                        const EdgeInsets.symmetric(horizontal: 50),
-                    indicator: UnderlineTabIndicator(
-                        borderSide:
-                            BorderSide(width: getUniqueW(4.0), color: redConst),
-                        insets:
-                            EdgeInsets.symmetric(horizontal: getUniqueW(20.0))),
-                    tabs: [
-                      Tab(
-                          icon: MyTextMedium(
-                        data: 'Dynamic',
-                        size: getUniqueW(16),
-                      )),
-                      Tab(
-                          icon: MyTextMedium(
-                        data: 'Discuss',
-                        size: getUniqueW(16),
-                      )),
-                      Tab(
-                          icon: MyTextMedium(
-                        data: 'Select',
-                        size: getUniqueW(16),
-                      )),
-                    ],
+                IconButton(
+                  onPressed: () {},
+                  icon: SvgPicture.asset(
+                    MyIcons.moreV,
+                    width: getUniqueW(24.0),
+                    color: whiteConst,
                   ),
                 ),
-                pinned: true,
-              ),
-            ];
-          },
-          body: const Center(
-            child: TabBarView(
-              children: [
-                Icon(Icons.directions_car),
-                Icon(Icons.directions_transit),
-                Icon(Icons.directions_bike),
               ],
             ),
           ),
         ),
-      ),
+
+        // GROUP INFO SECTION
+        Container(
+          width: SizeConfig.screenWidth,
+          padding: EdgeInsets.symmetric(
+              horizontal: getUniqueW(18.0), vertical: getUniqueH(15.0)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const CircleAvatar(
+                foregroundImage:
+                    NetworkImage('https://source.unsplash.com/random/2'),
+                radius: 36.5,
+                backgroundColor: greyConst,
+              ),
+              SizedBox(
+                width: getUniqueW(10.0),
+              ),
+              SizedBox(
+                width: getUniqueW(256.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    MyTextSemibold(
+                      data: "Dog's Life",
+                      size: 24,
+                      color: whiteConst,
+                    ),
+                    SizedBox(height: getUniqueH(6.0)),
+                    MyTextRegular(
+                        data:
+                            "Dog knowledge sharing, irregularly organized offline exchanges and group buying.",
+                        size: 13,
+                        color: whiteConst,
+                        maxLines: 2),
+                    SizedBox(height: getUniqueH(12.0)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        MyTextRegular(
+                          data: '548 Members',
+                          size: 13,
+                          color: whiteConst,
+                        ),
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: MyTextRegular(data: 'Joined', size: 13),
+                          style: ElevatedButton.styleFrom(primary: blackConst),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
-
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  _SliverAppBarDelegate(this._tabBar);
-
-  final TabBar _tabBar;
-
-  @override
-  double get minExtent => _tabBar.preferredSize.height;
-  @override
-  double get maxExtent => _tabBar.preferredSize.height;
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      color: whiteConst,
-      child: _tabBar,
-    );
-  }
-
-  @override
-  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    return false;
-  }
-}
-

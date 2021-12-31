@@ -29,7 +29,7 @@ class CirclePage extends StatelessWidget {
                   itemCount: 5,
                   itemBuilder: (context, index) {
                     return InkWell(
-                      onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> CircleDetail())),
+                      onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> CircleDetailPage())),
                       child: SizedBox(
                           width: SizeConfig.screenWidth,
                           height: getUniqueH(90.0),

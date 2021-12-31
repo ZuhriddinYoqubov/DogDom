@@ -19,7 +19,6 @@ export 'package:dog_dom/view/screens/home/home_page.dart';
 export 'package:dog_dom/view/screens/launch_sign/sign_page.dart';
 export 'package:dog_dom/view/screens/launch_sign/launch_page.dart';
 export 'package:dog_dom/view/screens/circle/circle_detail_page.dart';
-export 'package:dog_dom/view/screens/circle/circle_detail.dart';
 
 
 
@@ -42,4 +41,6 @@ export 'package:dog_dom/providers/text_field_provider.dart';
 export 'package:dog_dom/providers/search_field_provider.dart';
 export 'package:dog_dom/providers/home_page_provider.dart';
 export 'package:dog_dom/providers/circle_tab_provider.dart';
+export 'package:dog_dom/providers/bottom_nav_bar_provider.dart';
+export 'package:dog_dom/providers/personal_page_provider.dart';
 

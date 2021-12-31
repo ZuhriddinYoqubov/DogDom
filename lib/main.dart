@@ -1,4 +1,3 @@
-import 'package:dog_dom/providers/bottom_nav_bar_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:dog_dom/core/constants/imports.dart';
 
@@ -10,6 +9,7 @@ void main() {
       ChangeNotifierProvider(create: (context) => HomePageProvider()),
       ChangeNotifierProvider(create: (context) => BottomNavBarProvider()),
       ChangeNotifierProvider(create: (context) => CircleTabProvider()),
+      ChangeNotifierProvider(create: (context) => PersonalPageProvider()),
 
     ],
     child: const MyApp(),
