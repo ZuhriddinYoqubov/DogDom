@@ -89,11 +89,11 @@ class CircleDetailPage extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          buildTabItem(context, 0, 'Dynamic'),
+          const DynamicsTabBarItem( index: 0, itemName: 'Dynamic'),
           SizedBox(width: getUniqueW(28.0)),
-          buildTabItem(context, 1, 'Discuss'),
+          const DynamicsTabBarItem(index: 1, itemName: 'Discuss'),
           SizedBox(width: getUniqueW(28.0)),
-          buildTabItem(context, 2, 'Select'),
+          const DynamicsTabBarItem(index: 2, itemName: 'Select'),
         ],
       ),
     );
@@ -110,36 +110,6 @@ class CircleDetailPage extends StatelessWidget {
         data: "Notice Group buying dog food.",
         size: 15,
         color: blackConst.withOpacity(0.7),
-      ),
-    );
-  }
-
-  Widget buildTabItem(BuildContext context, int index, String itemName) {
-    return InkWell(
-      onTap: () => context.read<CircleTabProvider>().changeTabIndex(index),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          MyTextMedium(
-            data: itemName,
-            size: 16.0,
-            color: context.watch<CircleTabProvider>().currentIndex == index
-                ? redConst
-                : blackConst,
-          ),
-          SizedBox(height: getUniqueH(4.0)),
-          Container(
-            height: getUniqueH(3.0),
-            width: getUniqueW(18.0),
-            decoration: BoxDecoration(
-              color: context.watch<CircleTabProvider>().currentIndex == index
-                  ? redConst
-                  : Colors.transparent,
-              borderRadius: BorderRadius.circular(2.0),
-            ),
-          )
-        ],
       ),
     );
   }
@@ -271,3 +241,4 @@ class CircleDetailPage extends StatelessWidget {
     );
   }
 }
+

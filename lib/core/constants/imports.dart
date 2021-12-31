@@ -14,6 +14,7 @@ export 'package:dog_dom/core/constants/size_config.dart';
 export 'package:dog_dom/core/constants/colors.dart';
 export 'package:dog_dom/core/constants/images.dart';
 
+
 // SCREENS
 export 'package:dog_dom/view/screens/home/home_page.dart';
 export 'package:dog_dom/view/screens/launch_sign/sign_page.dart';
@@ -32,6 +33,8 @@ export 'package:dog_dom/view/widgets/my_bottom_nav_bar.dart';
 export 'package:dog_dom/view/widgets/my_horizontal_scroll_card.dart';
 export 'package:dog_dom/view/widgets/my_circles_list.dart';
 export 'package:dog_dom/view/widgets/my_glasmorphic_layer.dart';
+export 'package:dog_dom/view/widgets/dynamics_tab_bar_item.dart';
+
 
 
 // PROVIDERS

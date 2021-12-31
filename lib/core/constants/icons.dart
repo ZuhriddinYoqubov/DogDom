@@ -1,4 +1,5 @@
 class MyIcons {
+  static const addSmall = 'assets/icons/add.svg';
   static const hash = 'assets/icons/#.svg';
   static const aa = 'assets/icons/Aa.svg';
   static const addCircle = 'assets/icons/Add_circle.svg';

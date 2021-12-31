@@ -3,6 +3,7 @@ import 'package:dog_dom/providers/bottom_nav_bar_provider.dart';
 import 'package:dog_dom/view/screens/circle/circle_page.dart';
 import 'package:dog_dom/view/screens/home/home_select_page.dart';
 import 'package:dog_dom/view/screens/personal/persona_page.dart';
+import 'package:dog_dom/view/screens/personal/user_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -22,6 +23,7 @@ List<Widget> pageList = [
   HomeSelectPage(),
   CirclePage(),
   PerconalPage(),
+  UserPage(),
 ];
 
 }

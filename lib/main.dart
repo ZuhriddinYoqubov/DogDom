@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:dog_dom/core/constants/imports.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent, // transparent status bar
+    systemNavigationBarColor: Colors.transparent,
+    systemNavigationBarDividerColor: Colors.transparent,
+  ));
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => TextFieldProvider()),
