@@ -8,23 +8,80 @@ class CircleDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: whiteConst,
-      body: Column(
+      body: Stack(alignment: Alignment.bottomCenter, children: [
+        SizedBox(
+          height: SizeConfig.screenHeight,
+          child: Column(
+            children: [
+              //APPBAR SECTION
+              buildAppBar(context),
+
+              //  GROUP DESCRIPTION SECTION
+              buildTabDescription(),
+
+              // TAB BAR SECTION
+              buildTabBar(context),
+              const Divider(thickness: 0.3),
+
+              // TAB BAR VIEW SECTION
+            ],
+          ),
+        ),
+        buildBottomCard()
+      ]),
+    );
+  }
+
+  Widget buildBottomCard() {
+    return Positioned(
+        child: Container(
+            padding: EdgeInsets.symmetric(
+                horizontal: getUniqueW(30.0), vertical: getUniqueH(15.0)),
+            decoration: BoxDecoration(
+              color: whiteConst,
+              boxShadow: [
+                BoxShadow(
+                    blurRadius: 5,
+                    spreadRadius: 5,
+                    color: blackConst.withOpacity(0.05),
+                    offset: const Offset(0, 4))
+              ],
+              borderRadius: BorderRadius.circular(
+                getUniqueW(104.0),
+              ),
+            ),
+            child: Row(
+              children: [
+                bouldBottomCardItem(MyIcons.questions, 'Questions'),
+                SizedBox(width: getUniqueW(45.5)),
+                bouldBottomCardItem(MyIcons.article, 'Article'),
+                SizedBox(width: getUniqueW(45.5)),
+                bouldBottomCardItem(MyIcons.dynamik, 'Dynamic'),
+              ],
+            )),
+        bottom: getUniqueH(16.0),
+      );
+  }
+
+  Widget bouldBottomCardItem(String image, String text) {
+    return InkWell(
+      onTap: (){},
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          //APPBAR SECTION
-          buildAppBar(context),
-
-          //  GROUP DESCRIPTION SECTION
-          buildTabDescription(),
-
-          // TAB BAR SECTION
-          buildTabBar(context),
-          const Divider(thickness: 0.3),
+          SvgPicture.asset(
+            image,
+            width: getUniqueW(24.0),
+          ),
+          SizedBox(height: getUniqueH(5.0)),
+          MyTextRegular(data: text, size: 12)
         ],
       ),
     );
   }
 
-  Container buildTabBar(BuildContext context) {
+  Widget buildTabBar(BuildContext context) {
     return Container(
       height: getUniqueH(38.0),
       padding: EdgeInsets.only(left: getUniqueW(18.0), top: getUniqueH(10)),
@@ -41,7 +98,7 @@ class CircleDetail extends StatelessWidget {
     );
   }
 
-  Container buildTabDescription() {
+  Widget buildTabDescription() {
     return Container(
       height: getUniqueH(46),
       width: SizeConfig.screenWidth,
@@ -86,7 +143,7 @@ class CircleDetail extends StatelessWidget {
     );
   }
 
-  Container buildAppBar(BuildContext context) {
+  Widget buildAppBar(BuildContext context) {
     return Container(
       width: SizeConfig.screenWidth,
       height: getUniqueH(230.0),
@@ -105,7 +162,7 @@ class CircleDetail extends StatelessWidget {
     );
   }
 
-  Column buildIntoAppBar(BuildContext context) {
+  Widget buildIntoAppBar(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
