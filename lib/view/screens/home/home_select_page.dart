@@ -32,19 +32,35 @@ class HomeSelectPage extends StatelessWidget {
   }
 
   Widget buildVerticalScroll() {
-    return Expanded(
-        child: ListView.builder(
-            padding: EdgeInsets.zero,
-            physics: const BouncingScrollPhysics(),
-            itemCount: 3,
-            itemBuilder: (context, index) {
-              return Container(
-                height: 300,
-                width: 500,
-                color: Colors.amber,
-                margin: const EdgeInsets.all(10),
-              );
-            }));
+    return FutureBuilder(
+      future: AuthService().getAllUsers(),
+      builder: (context, AsyncSnapshot<List<User>> snapshot) {
+        if (!snapshot.hasData) {
+          return const Expanded(child: SizedBox(
+            width: 100,
+            height: 100,
+            child: CircularProgressIndicator()));
+        } else if (snapshot.hasError) {
+          return const Expanded(child: Text("Error"));
+        } else {
+          return Expanded(
+            child: ListView.builder(
+              padding: EdgeInsets.zero,
+              physics: const BouncingScrollPhysics(),
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  height: 300,
+                  width: 500,
+                  color: Colors.amber,
+                  margin: const EdgeInsets.all(10),
+                );
+              },
+            ),
+          );
+        }
+      },
+    );
   }
 
   Widget buildHorizontalScroll() {
@@ -149,11 +165,10 @@ class HomeSelectPage extends StatelessWidget {
                     color: select ? blackConst : blackConst.withOpacity(0.4),
                   ),
                   SizedBox(height: getUniqueH(5.0)),
-                  
-                    SvgPicture.asset(
-                      MyIcons.smile2,
-                      color:select ? redConst: Colors.transparent,
-                    )
+                  SvgPicture.asset(
+                    MyIcons.smile2,
+                    color: select ? redConst : Colors.transparent,
+                  )
                 ],
               ),
             ),
@@ -171,10 +186,10 @@ class HomeSelectPage extends StatelessWidget {
                     color: !select ? blackConst : blackConst.withOpacity(0.4),
                   ),
                   SizedBox(height: getUniqueH(5.0)),
-                    SvgPicture.asset(
-                      MyIcons.smile2,
-                      color: !select ? redConst: Colors.transparent,
-                    )
+                  SvgPicture.asset(
+                    MyIcons.smile2,
+                    color: !select ? redConst : Colors.transparent,
+                  )
                 ],
               ),
             ),
