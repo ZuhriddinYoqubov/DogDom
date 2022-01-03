@@ -54,6 +54,8 @@ class HomeSelectPage extends StatelessWidget {
                   width: 500,
                   color: Colors.amber,
                   margin: const EdgeInsets.all(10),
+                  alignment: Alignment.center,
+                  child: MyTextSemibold(data: snapshot.data![index].name.toString(),size: 30,),
                 );
               },
             ),

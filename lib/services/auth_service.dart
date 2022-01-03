@@ -17,10 +17,8 @@ class AuthService {
   }
 
   Future<List<User>> getAllUsers() async {
-  print(ipAdress + '/users');
     try {
       Response res = await Dio().get(ipAdress + '/users');
-      print(res.data);
       return (res.data as List).map((e) => User.fromJson(e)).toList();
     } catch (err) {
       rethrow;
