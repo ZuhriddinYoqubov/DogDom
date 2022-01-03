@@ -2,14 +2,18 @@ import 'package:dog_dom/core/constants/imports.dart';
 import 'package:flutter/material.dart';
 
 class SignPage extends StatelessWidget {
-  const SignPage({Key? key}) : super(key: key);
-  
+  SignPage({Key? key}) : super(key: key);
+  late bool isVisible;
+  late bool isLoginPage;
 
   @override
   Widget build(BuildContext context) {
+
     var contextWatch = context.watch<AuthProvider>();
     var contextRead = context.read<AuthProvider>();
-    bool isVisible = contextWatch.isVisible;
+    isVisible = contextWatch.isVisible;
+    isLoginPage = contextWatch.isLoginPage;
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -22,65 +26,66 @@ class SignPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(height: getUniqueH(157.0)),
-          
+
                 // LOGO SECTION
                 SvgPicture.asset(MyIcons.textLogo,
                     color: whiteConst, width: getUniqueW(180.0)),
-          
+                SizedBox(height: getUniqueH(40.0)),
+
                 // NAME SECTION
-                Container(
+                  if(!isLoginPage) Container(
                   margin: EdgeInsets.zero,
-                  padding: EdgeInsets.fromLTRB(getUniqueW(28.0), getUniqueH(40.0),
-                      getUniqueW(28.0), getUniqueH(16.0)),
+                  padding: EdgeInsets.fromLTRB(getUniqueW(28.0),
+                      getUniqueH(0.0), getUniqueW(28.0), getUniqueH(16.0)),
                   child: MyAuthTextField(
-                      controller:
-                          contextWatch.nameController,
+                      controller: contextWatch.nameController,
                       hintText: 'name',
                       textInputType: TextInputType.name,
                       labelText: ""),
                 ),
-          
+
                 // PHONE SECTION
                 Container(
                   margin: EdgeInsets.zero,
-                  padding: EdgeInsets.fromLTRB(getUniqueW(28.0), getUniqueH(0.0),
-                      getUniqueW(28.0), getUniqueH(16.0)),
+                  padding: EdgeInsets.fromLTRB(getUniqueW(28.0),
+                      getUniqueH(0.0), getUniqueW(28.0), getUniqueH(16.0)),
                   child: MyAuthTextField(
-                      controller:
-                          contextWatch.phoneController,
+                      controller: contextWatch.phoneController,
                       hintText: 'phone',
                       textInputType: TextInputType.phone,
                       labelText: ""),
                 ),
-          
+
                 // PASSWORD SECTION
                 Container(
                   margin: EdgeInsets.zero,
-                  padding: EdgeInsets.fromLTRB(getUniqueW(28.0), getUniqueH(0.0),
-                      getUniqueW(28.0), getUniqueH(16.0)),
+                  padding: EdgeInsets.fromLTRB(getUniqueW(28.0),
+                      getUniqueH(0.0), getUniqueW(28.0), getUniqueH(16.0)),
                   child: MyAuthTextField(
                     controller: contextWatch.passwordController,
                     hintText: 'password',
                     textInputType: TextInputType.visiblePassword,
                     labelText: "",
-                    suffixIcon: IconButton(
-                      onPressed: () {
+                    suffixIcon: InkWell(
+                      onTap: () {
                         isVisible = !isVisible;
                         contextRead.changeVisible(isVisible);
                       },
-                      icon: contextWatch.eye,
+                      child: Icon(isVisible ? Icons.remove_red_eye_outlined:Icons.remove_red_eye_sharp),
                     ),
                   ),
                 ),
-          
+
                 // BUTTON SECTION
                 ElevatedButton(
                   onPressed: () {
+                    contextWatch.isLoginPage ?
+                    contextRead.onLoginPressed():
                     contextRead.onSignUpPressed();
                     // Navigator.pushReplacement(context,
                     //     MaterialPageRoute(builder: (context) => HomePage()));
                   },
-                  child: MyTextMedium(data: "Sign Up", size: 17),
+                  child: MyTextMedium(data: isLoginPage ? "Sign In": 'Sign Up', size: 17),
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(
@@ -94,13 +99,16 @@ class SignPage extends StatelessWidget {
                     ),
                   ),
                 ),
-          
+
                 //TEXT BUTTON SECTION
                 Container(
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      isLoginPage = !isLoginPage;
+                      contextRead.changeLoginPage(isLoginPage);
+                    },
                     child: MyTextRegular(
-                        data: "Password to Login", size: 13, color: whiteConst),
+                        data:  isLoginPage ? "Sign Up": 'Sign In', size: 13, color: whiteConst),
                   ),
                   padding: EdgeInsets.only(
                     left: getUniqueW(35.0),
@@ -108,9 +116,9 @@ class SignPage extends StatelessWidget {
                   ),
                   alignment: Alignment.centerLeft,
                 ),
-          
+
                 const Spacer(),
-          
+
                 // BOTTOM TEXT SECTION
                 Container(
                   padding: EdgeInsets.only(bottom: getUniqueH(16.0)),

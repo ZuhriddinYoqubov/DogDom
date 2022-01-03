@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:dog_dom/core/constants/imports.dart';
 
 class AuthProvider extends ChangeNotifier {
-  bool isVisible = false;
+  bool isVisible = true;
+  bool isLoginPage = true;
   Icon eye = const Icon(Icons.remove_red_eye_outlined);
 
   TextEditingController nameController = TextEditingController();
@@ -10,7 +11,10 @@ class AuthProvider extends ChangeNotifier {
   TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
-  void changeController() {}
+  void changeLoginPage(bool v) {
+    isLoginPage =v;
+    notifyListeners();
+  }
 
   void changeVisible(bool v) {
     isVisible = v;
@@ -19,6 +23,9 @@ class AuthProvider extends ChangeNotifier {
         ? const Icon(Icons.remove_red_eye_sharp)
         : const Icon(Icons.remove_red_eye_outlined);
   }
+
+  void onLoginPressed(){}
+
 
   void onSignUpPressed() {
     print('sign up pressed');

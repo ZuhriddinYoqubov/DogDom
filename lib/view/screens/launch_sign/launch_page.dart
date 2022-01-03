@@ -9,7 +9,7 @@ class LaunchPage extends StatelessWidget {
     SizeConfig().init(context);
 
     Timer(const Duration(seconds: 2), () {
-     _setNavigator(const SignPage(), context);
+     _setNavigator( SignPage(), context);
     });
 
 
