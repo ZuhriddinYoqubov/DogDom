@@ -6,7 +6,7 @@ class MyAuthTextField extends StatelessWidget {
   final TextEditingController controller;
   final TextInputType textInputType;
   final String labelText;
-  late bool isVisible;
+  late bool? isVisible = false;
   Widget? suffixIcon;
 
   String? Function(String?)? validator;
@@ -25,13 +25,14 @@ class MyAuthTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //isVisible = Provider.of<TextFieldProvider>(context).isVisible;
+    // if(textInputType == TextInputType.visiblePassword) 
+    isVisible = Provider.of<AuthProvider>(context).isVisible;
     SizeConfig().init(context);
     return TextFormField(
       controller: controller,
-      validator: validator,
+      validator: _validator,
       keyboardType: textInputType,
-      //obscureText: (keyboardType == TextInputType.visiblePassword && isVisible) ? true : false,
+      obscureText: (textInputType == TextInputType.visiblePassword && isVisible!) ? true : false,
       onChanged: (value) {
         // Provider.of<TextFieldProvider>(context, listen: false).value =
         //     value;
@@ -40,6 +41,7 @@ class MyAuthTextField extends StatelessWidget {
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
         hintText: hintText,
+        hintStyle: TextStyle(color: whiteConst.withOpacity(0.4)),
         //labelText: labelText,
         //alignLabelWithHint: true,
         filled: true,
@@ -60,5 +62,14 @@ class MyAuthTextField extends StatelessWidget {
       ),
       style: TextStyle(color: whiteConst, fontSize: getUniqueW(17.0), fontWeight: FontWeight.w500),
     );
+  }
+
+  String? _validator(String? fieldContent) {
+    if (fieldContent!.isEmpty) {
+      return 'Please, Fill the field';
+    } else if (fieldContent.length < 3) {
+      return 'Minimum 3 characters';
+    } 
+    return null;
   }
 }

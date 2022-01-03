@@ -5,7 +5,7 @@ class User {
   String? phone;
   int? iV;
 
-  User({this.sId, this.name, this.password, this.phone, this.iV});
+  User({this.sId, required this.name, this.password, this.phone, this.iV});
 
   User.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -17,11 +17,9 @@ class User {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['_id'] = sId;
     data['name'] = name;
     data['password'] = password;
     data['phone'] = phone;
-    data['__v'] = iV;
     return data;
   }
 }

@@ -10,7 +10,7 @@ void main() {
   ));
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (context) => TextFieldProvider()),
+      ChangeNotifierProvider(create: (context) => AuthProvider()),
       ChangeNotifierProvider(create: (context) => SearchFieldProvider()),
       ChangeNotifierProvider(create: (context) => HomePageProvider()),
       ChangeNotifierProvider(create: (context) => BottomNavBarProvider()),

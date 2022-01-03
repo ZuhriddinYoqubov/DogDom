@@ -36,10 +36,13 @@ class HomeSelectPage extends StatelessWidget {
       future: AuthService().getAllUsers(),
       builder: (context, AsyncSnapshot<List<User>> snapshot) {
         if (!snapshot.hasData) {
-          return const Expanded(child: SizedBox(
-            width: 100,
-            height: 100,
-            child: CircularProgressIndicator()));
+          return Flexible(
+            child: Center(
+              child: CircularProgressIndicator(
+                color: blackConst.withOpacity(0.3),
+              ),
+            ),
+          );
         } else if (snapshot.hasError) {
           return const Expanded(child: Text("Error"));
         } else {
@@ -55,7 +58,10 @@ class HomeSelectPage extends StatelessWidget {
                   color: Colors.amber,
                   margin: const EdgeInsets.all(10),
                   alignment: Alignment.center,
-                  child: MyTextSemibold(data: snapshot.data![index].name.toString(),size: 30,),
+                  child: MyTextSemibold(
+                    data: snapshot.data![index].name.toString(),
+                    size: 30,
+                  ),
                 );
               },
             ),

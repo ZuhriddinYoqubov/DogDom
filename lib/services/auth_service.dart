@@ -8,12 +8,17 @@ class AuthService {
         data: user.toJson(),
       );
 
-      SharedPreferences pref = await SharedPreferences.getInstance();
-      await pref.setBool('isLogged', true);
-      await pref.setString('profile', res.data.toString());
+      // SharedPreferences pref = await SharedPreferences.getInstance();
+      // await pref.setBool('isLogged', true);
+      // await pref.setString('profile', res.data.toString());
+      return 'Successful';
+
     } catch (err) {
       print(err);
+      return 'User registratsiyasida xatolik: auth service';
+
     }
+
   }
 
   Future<List<User>> getAllUsers() async {

@@ -41,7 +41,7 @@ export 'package:dog_dom/view/widgets/dynamics_tab_bar_item.dart';
 
 
 // PROVIDERS
-export 'package:dog_dom/providers/text_field_provider.dart';
+export 'package:dog_dom/providers/auth_provider.dart';
 export 'package:dog_dom/providers/search_field_provider.dart';
 export 'package:dog_dom/providers/home_page_provider.dart';
 export 'package:dog_dom/providers/circle_tab_provider.dart';
