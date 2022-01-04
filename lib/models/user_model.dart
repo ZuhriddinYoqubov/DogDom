@@ -5,7 +5,7 @@ class User {
   String? phone;
   int? iV;
 
-  User({this.sId, required this.name, this.password, this.phone, this.iV});
+  User({this.sId, this.name, required this.password, required this.phone, this.iV});
 
   User.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];

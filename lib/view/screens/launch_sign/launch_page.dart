@@ -8,8 +8,10 @@ class LaunchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
-    Timer(const Duration(seconds: 2), () {
-     _setNavigator( SignPage(), context);
+    Timer(const Duration(seconds: 2), () async{
+        SharedPreferences pref = await SharedPreferences.getInstance();
+      bool isLogged = pref.getBool('isLogged')?? false;
+     _setNavigator( isLogged? HomePage(): SignPage(), context);
     });
 
 
@@ -32,18 +34,6 @@ class LaunchPage extends StatelessWidget {
       ),
     );
   }
-
-  // void _goToPage() async {
-  //   SharedPreferences _pref = await SharedPreferences.getInstance();
-  //   bool isStarted = _pref.getBool("isStarted") ?? false;
-  //   if (!isStarted) {
-  //     _setNavigator(const IntroPage());
-  //   } else if (FirebaseAuth.instance.currentUser == null) {
-  //     _setNavigator(const SignInPage());
-  //   } else {
-  //     _setNavigator(const HomePage());
-  //   }
-  // }
 
   void _setNavigator(Widget page, BuildContext context) {
     Navigator.of(context).pushReplacement(

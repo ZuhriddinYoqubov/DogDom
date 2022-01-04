@@ -8,12 +8,14 @@ export 'package:provider/provider.dart';
 export 'package:glassmorphism/glassmorphism.dart';
 export 'package:dio/dio.dart';
 export 'package:shared_preferences/shared_preferences.dart';
+export 'package:fluttertoast/fluttertoast.dart';
+
 
 
 
 // CONSTANTS
 export 'package:dog_dom/core/constants/icons.dart';
-export 'package:dog_dom/core/constants/size_config.dart';
+export 'package:dog_dom/core/components/size_config.dart';
 export 'package:dog_dom/core/constants/colors.dart';
 export 'package:dog_dom/core/constants/images.dart';
 export 'package:dog_dom/core/constants/const.dart';

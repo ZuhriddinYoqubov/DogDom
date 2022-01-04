@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:dog_dom/core/constants/imports.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
 
 class AuthProvider extends ChangeNotifier {
   bool isVisible = true;
@@ -28,7 +26,26 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void onLoginPressed() {}
+  void onLoginPressed(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      User user = User(
+        phone: phoneController.text.trim().toLowerCase(),
+        password: passwordController.text.trim(),
+      );
+
+      authService.signIn(user).then((value) {
+        // print(" auth provider:" + value);
+          if (value == '200') {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomePage(),
+                ));
+          } else {
+            Fluttertoast.showToast(msg: "Bu raqam avval ro'yxatdan o'tgan!");
+          }
+      });
+  }
 
   void onSignUpPressed(BuildContext context) async {
     if (formKey.currentState!.validate()) {
@@ -55,4 +72,5 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+}
 }

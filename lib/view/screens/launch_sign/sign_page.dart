@@ -85,7 +85,7 @@ class SignPage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () async {
                     contextWatch.isLoginPage
-                        ? contextRead.onLoginPressed()
+                        ? contextRead.onLoginPressed(context)
                         : contextRead.onSignUpPressed(context);
 
                     if (contextWatch.isAuth) {
