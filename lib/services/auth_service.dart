@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dog_dom/core/constants/imports.dart';
 
 class AuthService {
@@ -16,6 +18,15 @@ class AuthService {
     }
   }
 
+  Future<User> fetchUserData() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    Map<String, dynamic> userMap =
+        jsonDecode(pref.getString('profile').toString());
+    User user = User.fromJson(userMap);
+    print(userMap);
+    return user;
+  }
+
   Future signIn(User user) async {
     try {
       Response res = await Dio().post(ipAdressLogin, data: user.toJson());
@@ -31,10 +42,10 @@ class AuthService {
     }
   }
 
-  Future logOut()async{
-        SharedPreferences pref = await SharedPreferences.getInstance();
-        pref.remove('profile');
-        pref.setBool('isLogged', false);
+  Future logOut() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.remove('profile');
+    pref.setBool('isLogged', false);
   }
 
   Future<List<User>> getAllUsers() async {

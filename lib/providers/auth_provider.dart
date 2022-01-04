@@ -18,6 +18,10 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<User> fetchUser()async{
+      return await authService.fetchUserData();
+  }
+
   void changeVisible(bool v) {
     isVisible = v;
     eye = v
@@ -25,28 +29,6 @@ class AuthProvider extends ChangeNotifier {
         : const Icon(Icons.remove_red_eye_outlined);
     notifyListeners();
   }
-
-  void onLoginPressed(BuildContext context) {
-    if (formKey.currentState!.validate()) {
-      User user = User(
-        phone: phoneController.text.trim().toLowerCase(),
-        password: passwordController.text.trim(),
-      );
-      formKey.currentState!.reset();
-      authService.signIn(user).then((value) {
-        // print(" auth provider:" + value);
-          if (value == '200') {
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HomePage(),
-                ));
-          } else {
-            Fluttertoast.showToast(msg: "Mobil raqam yoki parol xato!");
-          }
-      });
-  }
-
   void onSignUpPressed(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       User user = User(
@@ -73,5 +55,28 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void onLoginPressed(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      User user = User(
+        phone: phoneController.text.trim().toLowerCase(),
+        password: passwordController.text.trim(),
+      );
+      formKey.currentState!.reset();
+      authService.signIn(user).then((value) {
+        // print(" auth provider:" + value);
+          if (value == '200') {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomePage(),
+                ));
+          } else {
+            Fluttertoast.showToast(msg: "Mobil raqam yoki parol xato!");
+          }
+      });
+  }
+
+  
 }
 }

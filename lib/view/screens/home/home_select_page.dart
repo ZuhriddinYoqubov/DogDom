@@ -52,6 +52,7 @@ class HomeSelectPage extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
+                var user = snapshot.data![index];
                 return Container(
                   height: 300,
                   width: 500,
@@ -59,7 +60,7 @@ class HomeSelectPage extends StatelessWidget {
                   margin: const EdgeInsets.all(10),
                   alignment: Alignment.center,
                   child: MyTextSemibold(
-                    data: snapshot.data![index].name.toString(),
+                    data: user.followers.toString() == 'null' ?'0': user.kollektion.toString(),
                     size: 30,
                   ),
                 );
