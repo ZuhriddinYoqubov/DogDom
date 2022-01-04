@@ -111,8 +111,8 @@ class PerconalPage extends StatelessWidget {
           // PROPERTIES SECTION
           buildPropertyListtile(context, 0, MyIcons.vector, 'Followers', '6848'),
           buildPropertyListtile(context, 1, MyIcons.focus, 'Following', '6848'),
-          buildPropertyListtile(context, 2, MyIcons.collections, 'Followers', '6848'),
-          buildPropertyListtile(context, 3, MyIcons.order, 'Followers', '6848'),
+          buildPropertyListtile(context, 2, MyIcons.collections, 'Collection', '6848'),
+          buildPropertyListtile(context, 3, MyIcons.order, 'Other', '6848'),
           buildPropertyListtile(context, 4, MyIcons.dark, 'Dark Mode', '6848'),
 
         ],

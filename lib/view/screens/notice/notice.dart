@@ -80,10 +80,64 @@ class NoticePage extends StatelessWidget {
           ),
           Flexible(
             child: ListView.separated(
+              physics: const BouncingScrollPhysics(),
               padding: EdgeInsets.zero,
               itemBuilder: (context, index) {
                 return Container(
-                  margin: EdgeInsets.zero,
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        radius: getUniqueW(22.0),
+                        backgroundColor: greyConst,
+                        foregroundImage:
+                            NetworkImage(unsplashRandom + "/$index"),
+                      ),
+                      SizedBox(width: getUniqueW(12)),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: getUniqueW(283.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(
+                                    width: getUniqueW(220.0),
+                                    child: MyTextMedium(
+                                        data:
+                                            "Title tilsanjfalsnjnfjwefnlnwljfwlejfnlweflnwefa",
+                                        size: 16,
+                                        maxLines: 1)),
+                                Container(
+                                    alignment: Alignment.centerRight,
+                                    width: getUniqueW(63.0),
+                                    child: MyTextRegular(
+                                        data: '06/16',
+                                        size: 11,
+                                        color: blackConst40,
+                                        maxLines: 1))
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: getUniqueH(4.0)),
+                          SizedBox(
+                              width: getUniqueW(283.0),
+                              child: MyTextRegular(
+                                data:
+                                    "Congratulations! Your article was recommended by dog lovers to feature",
+                                size: 13,
+                                maxLines: 3,
+                                color: blackConst40,
+                              ))
+                        ],
+                      )
+                    ],
+                  ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: getUniqueW(18.0),
+                    vertical: getUniqueW(16.0),
+                  ),
                   color: whiteConst,
                   height: getUniqueH(100),
                 );

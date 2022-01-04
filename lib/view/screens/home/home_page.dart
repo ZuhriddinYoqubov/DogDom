@@ -17,9 +17,9 @@ class HomePage extends StatelessWidget {
 List<Widget> pageList = [
   HomeSelectPage(),
   CirclePage(),
-  PerconalPage(),
   UserPage(),
-  NoticePage()
+  NoticePage(),
+  PerconalPage(),
 ];
 
 }

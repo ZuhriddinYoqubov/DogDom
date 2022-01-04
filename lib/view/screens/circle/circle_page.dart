@@ -1,5 +1,6 @@
 import 'package:dog_dom/core/constants/imports.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CirclePage extends StatelessWidget {
   const CirclePage({Key? key}) : super(key: key);
@@ -7,83 +8,121 @@ class CirclePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(
+      //   backgroundColor: transpConst,
+      //   toolbarHeight: getUniqueH(114.0),
+      //   systemOverlayStyle: SystemUiOverlayStyle.dark,
+      //   elevation: 0,
+      //   flexibleSpace: SafeArea(
+      //     child: Column(
+      //       children: [buildAppBar(), buildTextField(context)],
+      //     ),
+      //   ),
+      // ),
       backgroundColor: whiteConst,
-      body: Column(
-        children: [
-          buildAppBar(),
-          buildTextField(context),
-          buildHorizontalScroll(),
-          // POPULAR CIRCLE SECTION
-          buildSectionTitle('Popular circle'),
-          const MyCirclesListView(),
-          SizedBox(height: getUniqueH(10.0)),
-          // THE CIRCLE JOIN SECTION
-          buildSectionTitle('The Circle to Join'),
-          Flexible(
-              child: ListView.builder(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: getUniqueW(18.0),
-                    vertical: getUniqueH(10.0),
-                  ),
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> CircleDetailPage())),
-                      child: SizedBox(
-                          width: SizeConfig.screenWidth,
-                          height: getUniqueH(90.0),
-                          child: 
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              CircleAvatar(
-                                backgroundColor: greyConst,
-                                foregroundImage: NetworkImage(
-                                    'https://source.unsplash.com/random/${index + 1}'),
-                                radius: getUniqueW(35.0),
-                              ),
-                              SizedBox(width: getUniqueW(16.0)),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  MyTextRegular(
-                                      data: 'I love Golden Retriever',
-                                      size: getUniqueW(16.0)),
-                                  MyTextRegular(
-                                    data: '548 Members',
-                                    size: getUniqueW(16.0),
-                                    color: blackConst.withOpacity(0.4),
-                                  ),
-                                ],
-                              ),
-                              const Spacer(),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: redConst,
-                                  fixedSize: Size(
-                                    getUniqueW(70.0),
-                                    getUniqueH(28.0),
-                                  ),
-                                ),
-                                onPressed: () {},
-                                child: Text(
-                                  'Joined',
-                                  style: TextStyle(
-                                    fontSize: getUniqueW(12.0),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          ),
-                    );
-                  }))
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          SliverAppBar(
+            stretch: true,
+            pinned: true,
+            expandedHeight: getUniqueH(114.0),
+            collapsedHeight: getUniqueH(114.0),
+            systemOverlayStyle: SystemUiOverlayStyle.dark,
+            backgroundColor: whiteConst,
+            elevation: 0,
+            flexibleSpace: FlexibleSpaceBar(
+              titlePadding: EdgeInsets.zero,
+              title: SafeArea(
+                child: Column(
+                  children: [buildAppBar(), buildTextField(context)],
+                ),
+              ),
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                buildHorizontalScroll(),
+                // POPULAR CIRCLE SECTION
+                buildSectionTitle('Popular circle'),
+                const MyCirclesListView(),
+                SizedBox(height: getUniqueH(10.0)),
+                // THE CIRCLE JOIN SECTION
+                buildSectionTitle('The Circle to Join'),
+                buildSectionTitle('Popular circle'),
+                buildVerticalScroll(),
+              ],
+            ),
+          ),
         ],
       ),
     );
+  }
+
+  Widget buildVerticalScroll() {
+    return ListView.builder(
+        padding: EdgeInsets.symmetric(
+          horizontal: getUniqueW(18.0),
+          vertical: getUniqueH(10.0),
+        ),
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: 5,
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (context) => CircleDetailPage())),
+            child: SizedBox(
+              width: SizeConfig.screenWidth,
+              height: getUniqueH(90.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    backgroundColor: greyConst,
+                    foregroundImage: NetworkImage(
+                        'https://source.unsplash.com/random/${index + 1}'),
+                    radius: getUniqueW(35.0),
+                  ),
+                  SizedBox(width: getUniqueW(16.0)),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      MyTextRegular(
+                          data: 'I love Golden Retriever',
+                          size: getUniqueW(16.0)),
+                      MyTextRegular(
+                        data: '548 Members',
+                        size: getUniqueW(16.0),
+                        color: blackConst.withOpacity(0.4),
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: redConst,
+                      fixedSize: Size(
+                        getUniqueW(70.0),
+                        getUniqueH(28.0),
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: Text(
+                      'Joined',
+                      style: TextStyle(
+                        fontSize: getUniqueW(12.0),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
   }
 
   Widget buildSectionTitle(String title) {
@@ -148,33 +187,37 @@ class CirclePage extends StatelessWidget {
   }
 
   Widget buildAppBar() {
-    return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: getUniqueW(18.0),
-          vertical: getUniqueH(18.0),
-        ),
-        child: Row(
-          children: [
-            MyTextSemibold(data: 'Circle', size: 24),
-            const Spacer(),
-            IconButton(
-              onPressed: () {},
-              icon: SvgPicture.asset(
-                MyIcons.scan,
-                width: getUniqueW(24.0),
-              ),
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: getUniqueW(18.0),
+        vertical: getUniqueH(10.0),
+      ),
+      child: Row(
+        children: [
+          MyTextSemibold(
+            data: 'Circle',
+            size: 24,
+            color: blackConst,
+          ),
+          const Spacer(),
+          IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset(
+              MyIcons.scan,
+              color: blackConst,
+              width: getUniqueW(24.0),
             ),
-            SizedBox(width: getUniqueW(25.0)),
-            IconButton(
-              onPressed: () {},
-              icon: SvgPicture.asset(
-                MyIcons.add,
-                width: getUniqueW(24.0),
-              ),
+          ),
+          SizedBox(width: getUniqueW(25.0)),
+          IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset(
+              MyIcons.add,
+              color: blackConst,
+              width: getUniqueW(24.0),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -7,6 +7,7 @@ void main() {
     statusBarColor: Colors.transparent, // transparent status bar
     systemNavigationBarColor: Colors.transparent,
     systemNavigationBarDividerColor: Colors.transparent,
+    statusBarBrightness: Brightness.light
   ));
   runApp(MultiProvider(
     providers: [
