@@ -23,15 +23,15 @@ export 'package:dog_dom/core/constants/const.dart';
 
 // SCREENS
 export 'package:dog_dom/view/screens/home/home_page.dart';
+export 'package:dog_dom/view/screens/home/home_select_page.dart';
 export 'package:dog_dom/view/screens/launch_sign/sign_page.dart';
 export 'package:dog_dom/view/screens/launch_sign/launch_page.dart';
-export 'package:dog_dom/view/screens/circle/circle_detail_page.dart';
-export  'package:dog_dom/view/screens/about/settings.dart';
-
 export 'package:dog_dom/view/screens/circle/circle_page.dart';
-export 'package:dog_dom/view/screens/home/home_select_page.dart';
+export 'package:dog_dom/view/screens/circle/circle_detail_page.dart';
 export 'package:dog_dom/view/screens/personal/persona_page.dart';
 export 'package:dog_dom/view/screens/personal/user_page.dart';
+export 'package:dog_dom/view/screens/about/settings.dart';
+export 'package:dog_dom/view/screens/notice/notice.dart';
 
 
 
@@ -47,6 +47,8 @@ export 'package:dog_dom/view/widgets/my_horizontal_scroll_card.dart';
 export 'package:dog_dom/view/widgets/my_circles_list.dart';
 export 'package:dog_dom/view/widgets/my_glasmorphic_layer.dart';
 export 'package:dog_dom/view/widgets/dynamics_tab_bar_item.dart';
+export 'package:dog_dom/view/widgets/my_custom_shape.dart';
+
 
 
 

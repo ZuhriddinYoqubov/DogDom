@@ -19,7 +19,7 @@ List<Widget> pageList = [
   CirclePage(),
   PerconalPage(),
   UserPage(),
-  SettingsPage()
+  NoticePage()
 ];
 
 }
