@@ -10,6 +10,7 @@ export 'package:dio/dio.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 
 
+
 // CONSTANTS
 export 'package:dog_dom/core/constants/icons.dart';
 export 'package:dog_dom/core/constants/size_config.dart';
@@ -23,6 +24,13 @@ export 'package:dog_dom/view/screens/home/home_page.dart';
 export 'package:dog_dom/view/screens/launch_sign/sign_page.dart';
 export 'package:dog_dom/view/screens/launch_sign/launch_page.dart';
 export 'package:dog_dom/view/screens/circle/circle_detail_page.dart';
+export  'package:dog_dom/view/screens/about/settings.dart';
+
+export 'package:dog_dom/view/screens/circle/circle_page.dart';
+export 'package:dog_dom/view/screens/home/home_select_page.dart';
+export 'package:dog_dom/view/screens/personal/persona_page.dart';
+export 'package:dog_dom/view/screens/personal/user_page.dart';
+
 
 
 // WIDGETS

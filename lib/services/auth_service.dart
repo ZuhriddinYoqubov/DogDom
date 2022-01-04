@@ -4,26 +4,24 @@ class AuthService {
   Future signUp(User user) async {
     try {
       Response res = await Dio().post(
-        ipAdress,
+        ipAdressReg,
         data: user.toJson(),
       );
-
-      // SharedPreferences pref = await SharedPreferences.getInstance();
-      // await pref.setBool('isLogged', true);
-      // await pref.setString('profile', res.data.toString());
-      return 'Successful';
-
+      if (res.statusCode == 200) {
+        SharedPreferences pref = await SharedPreferences.getInstance();
+        await pref.setBool('isLogged', true);
+        await pref.setString('profile', res.data.toString());
+        return res.statusCode.toString();
+      }
+      return res.statusCode.toString();
     } catch (err) {
-      print(err);
-      return 'User registratsiyasida xatolik: auth service';
-
+      return 'auth service: ${err}';
     }
-
   }
 
   Future<List<User>> getAllUsers() async {
     try {
-      Response res = await Dio().get(ipAdress + '/users');
+      Response res = await Dio().get(ipAdressUsers);
       return (res.data as List).map((e) => User.fromJson(e)).toList();
     } catch (err) {
       rethrow;

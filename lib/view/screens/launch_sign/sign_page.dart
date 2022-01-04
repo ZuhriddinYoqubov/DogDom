@@ -1,17 +1,19 @@
 import 'package:dog_dom/core/constants/imports.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SignPage extends StatelessWidget {
   SignPage({Key? key}) : super(key: key);
   late bool isVisible;
   late bool isLoginPage;
+  late var contextWatch;
+  late var contextRead;
 
   @override
   Widget build(BuildContext context) {
-
-    var contextWatch = context.watch<AuthProvider>();
-    var contextRead = context.read<AuthProvider>();
-    isVisible = contextWatch.isVisible;
+    contextWatch = context.watch<AuthProvider>();
+    contextRead = context.read<AuthProvider>();
+    isVisible = context.watch<AuthProvider>().isVisible;
     isLoginPage = contextWatch.isLoginPage;
 
     return Scaffold(
@@ -33,16 +35,17 @@ class SignPage extends StatelessWidget {
                 SizedBox(height: getUniqueH(40.0)),
 
                 // NAME SECTION
-                  if(!isLoginPage) Container(
-                  margin: EdgeInsets.zero,
-                  padding: EdgeInsets.fromLTRB(getUniqueW(28.0),
-                      getUniqueH(0.0), getUniqueW(28.0), getUniqueH(16.0)),
-                  child: MyAuthTextField(
-                      controller: contextWatch.nameController,
-                      hintText: 'name',
-                      textInputType: TextInputType.name,
-                      labelText: ""),
-                ),
+                if (!isLoginPage)
+                  Container(
+                    margin: EdgeInsets.zero,
+                    padding: EdgeInsets.fromLTRB(getUniqueW(28.0),
+                        getUniqueH(0.0), getUniqueW(28.0), getUniqueH(16.0)),
+                    child: MyAuthTextField(
+                        controller: contextWatch.nameController,
+                        hintText: 'name',
+                        textInputType: TextInputType.name,
+                        labelText: ""),
+                  ),
 
                 // PHONE SECTION
                 Container(
@@ -71,21 +74,27 @@ class SignPage extends StatelessWidget {
                         isVisible = !isVisible;
                         contextRead.changeVisible(isVisible);
                       },
-                      child: Icon(isVisible ? Icons.remove_red_eye_outlined:Icons.remove_red_eye_sharp),
+                      child: Icon(isVisible
+                          ? Icons.remove_red_eye_outlined
+                          : Icons.remove_red_eye_sharp),
                     ),
                   ),
                 ),
 
                 // BUTTON SECTION
                 ElevatedButton(
-                  onPressed: () {
-                    contextWatch.isLoginPage ?
-                    contextRead.onLoginPressed():
-                    contextRead.onSignUpPressed();
-                    // Navigator.pushReplacement(context,
-                    //     MaterialPageRoute(builder: (context) => HomePage()));
+                  onPressed: () async {
+                    contextWatch.isLoginPage
+                        ? contextRead.onLoginPressed()
+                        : contextRead.onSignUpPressed(context);
+
+                    if (contextWatch.isAuth) {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => HomePage()));
+                    }
                   },
-                  child: MyTextMedium(data: isLoginPage ? "Sign In": 'Sign Up', size: 17),
+                  child: MyTextMedium(
+                      data: isLoginPage ? "Sign In" : 'Sign Up', size: 17),
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(
@@ -108,7 +117,9 @@ class SignPage extends StatelessWidget {
                       contextRead.changeLoginPage(isLoginPage);
                     },
                     child: MyTextRegular(
-                        data:  isLoginPage ? "Sign Up": 'Sign In', size: 13, color: whiteConst),
+                        data: isLoginPage ? "Sign Up" : 'Sign In',
+                        size: 13,
+                        color: whiteConst),
                   ),
                   padding: EdgeInsets.only(
                     left: getUniqueW(35.0),
