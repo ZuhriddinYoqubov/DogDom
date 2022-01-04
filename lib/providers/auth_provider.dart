@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:dog_dom/core/constants/imports.dart';
 
 class AuthProvider extends ChangeNotifier {
-  bool isVisible = true;
-  bool isLoginPage = true;
-  bool isAuth = false;
-  Icon eye = const Icon(Icons.remove_red_eye_outlined);
-  final AuthService authService = AuthService();
 
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController(text: '+998');
   TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  final AuthService authService = AuthService();
+
+  bool isVisible = true;
+  bool isLoginPage = true;
+  Icon eye = const Icon(Icons.remove_red_eye_outlined);
 
   void changeLoginPage(bool v) {
     isLoginPage = v;
@@ -32,7 +32,7 @@ class AuthProvider extends ChangeNotifier {
         phone: phoneController.text.trim().toLowerCase(),
         password: passwordController.text.trim(),
       );
-
+      formKey.currentState!.reset();
       authService.signIn(user).then((value) {
         // print(" auth provider:" + value);
           if (value == '200') {
@@ -42,7 +42,7 @@ class AuthProvider extends ChangeNotifier {
                   builder: (context) => HomePage(),
                 ));
           } else {
-            Fluttertoast.showToast(msg: "Bu raqam avval ro'yxatdan o'tgan!");
+            Fluttertoast.showToast(msg: "Mobil raqam yoki parol xato!");
           }
       });
   }
@@ -54,6 +54,7 @@ class AuthProvider extends ChangeNotifier {
         phone: phoneController.text.trim().toLowerCase(),
         password: passwordController.text.trim(),
       );
+      formKey.currentState!.reset();
 
       authService.signUp(user).then(
         (value) {
